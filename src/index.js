@@ -19,22 +19,23 @@ function loadTasks () {
 		const list = document.querySelector("ul");
 		const li = document.createElement("li");
 		li.innerHTML = `
-		<input
-			type="checkbox"
-			onclick=""
-			class="check ${ task?.completed ? "checked" : ""}"
-		>
-		<input
-			type="text"
-			onblur=""
-			onfocus=""
-			value="${ task?.task }"
-			class="task ${ task?.completed ? "completed" : ""}"
-		>
-		<button onclick="">
-			<i class="fa fa-trash" onclick=""></i>
-		</button>
-	`;
+			<input
+				type="checkbox"
+				onclick="completeTask(this)"
+				class="check"
+				${ task?.completed ? "checked" : ""}
+			>
+			<input
+				type="text"
+				onblur=""
+				onfocus=""
+				value="${ task?.task }"
+				class="task ${ task?.completed ? "completed" : ""}"
+			>
+			<button onclick="">
+				<i class="fa fa-trash" onclick=""></i>
+			</button>
+		`;
 		list && list.insertBefore(li, list.children[0]);
 	});
 }
@@ -63,33 +64,21 @@ function addTask () {
 			date: Date.now()
 		}
 	]));
-
-	// create list item, add innerHTML and append to ul
-	const li = document.createElement("li");
-	li.innerHTML = `
-		<input
-			type="checkbox"
-			onclick=""
-			class="check ${ task?.completed ? "checked" : ""}"
-		>
-		<input
-			type="text"
-			onblur=""
-			onfocus=""
-			value="${ task?.task }"
-			class="task ${ task?.completed ? "completed" : ""}"
-		>
-		<button onclick="">
-			<i class="fa fa-trash" onclick=""></i>
-		</button>
-	`;
-	list && list.insertBefore(li, list.children[0]);
-	// clear input
-	task.value = "";
+	// reload browser
+	location.reload();
 }
 
 // complete a task
-function completeTask() {}
+function completeTask (event) {
+	let tasks = Array.from(JSON.parse(localStorage.getItem("tasks") || "[]"));
+	tasks.forEach((task) => {
+		if (task.task === event.nextElementSibling.value) {
+			task.completed = !task.completed;
+		}
+	});
+	localStorage.setItem("tasks", JSON.stringify(tasks));
+	event.nextElementSibling.classList.toggle("completed");
+}
 
 // remove a task
 function removeTask() {}
