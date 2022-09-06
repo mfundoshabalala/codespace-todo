@@ -32,7 +32,7 @@ function loadTasks () {
 				value="${ task?.task }"
 				class="task ${ task?.completed ? "completed" : ""}"
 			>
-			<button onclick="">
+			<button onclick="removeTask(this)">
 				<i class="fa fa-trash" onclick=""></i>
 			</button>
 		`;
@@ -81,7 +81,16 @@ function completeTask (event) {
 }
 
 // remove a task
-function removeTask() {}
+function removeTask (event) {
+	let tasks = Array.from(JSON.parse(localStorage.getItem("tasks") || "[]"));
+	tasks.forEach((task) => {
+		if (task.task === event.parentNode.children[1].value) {
+			tasks.splice(tasks.indexOf(task), 1);
+		}
+	});
+	localStorage.setItem("tasks", JSON.stringify(tasks));
+	event.parentElement.remove();
+}
 
 //
 function getCurrentTask() {}
