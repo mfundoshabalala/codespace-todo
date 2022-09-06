@@ -14,12 +14,35 @@ function loadTasks () {
 
 	let tasks = Array.from(JSON.parse(localStorage.getItem("tasks") || "[]"));
 
-	console.log("localStorage", tasks);
+	// Loop through the tasks and add them to the list
+	tasks.forEach((task) => {
+		const list = document.querySelector("ul");
+		const li = document.createElement("li");
+		li.innerHTML = `
+		<input
+			type="checkbox"
+			onclick=""
+			class="check ${ task?.completed ? "checked" : ""}"
+		>
+		<input
+			type="text"
+			onblur=""
+			onfocus=""
+			value="${ task?.task }"
+			class="task ${ task?.completed ? "completed" : ""}"
+		>
+		<button onclick="">
+			<i class="fa fa-trash" onclick=""></i>
+		</button>
+	`;
+		list && list.insertBefore(li, list.children[0]);
+	});
 }
 
 // add a task
 function addTask () {
 	const task = document.querySelector("form input");
+	const list = document.querySelector("ul");
 
 	// return if task is empty
 	if (task?.value === "") {
@@ -40,6 +63,29 @@ function addTask () {
 			date: Date.now()
 		}
 	]));
+
+	// create list item, add innerHTML and append to ul
+	const li = document.createElement("li");
+	li.innerHTML = `
+		<input
+			type="checkbox"
+			onclick=""
+			class="check ${ task?.completed ? "checked" : ""}"
+		>
+		<input
+			type="text"
+			onblur=""
+			onfocus=""
+			value="${ task?.task }"
+			class="task ${ task?.completed ? "completed" : ""}"
+		>
+		<button onclick="">
+			<i class="fa fa-trash" onclick=""></i>
+		</button>
+	`;
+	list && list.insertBefore(li, list.children[0]);
+	// clear input
+	task.value = "";
 }
 
 // complete a task
