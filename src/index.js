@@ -110,13 +110,13 @@ function editTask (event) {
 		return;
 	}
 	// task already exist
-	tasks.forEach((task) => {
-		if (task.task === event.value) {
-			alert("Task already exist!");
-			event.value = currentTask;
-			return;
-		}
-	});
+	// tasks.forEach((task) => {
+	// 	if (task.task === event.value) {
+	// 		// alert("Task already exist!");
+	// 		event.value = currentTask;
+	// 		return;
+	// 	}
+	// });
 	// update task
 	tasks.forEach((task) => {
 		if (task.task === currentTask) {
