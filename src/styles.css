@@ -34,7 +34,7 @@ header > form {
 }
 
 header > form > input {
-    @apply w-full max-w-sm px-4 py-2 font-light tracking-wide duration-200 border rounded shadow-md outline-none focus:shadow-sm placeholder:font-thin placeholder:text-orange-900;
+    @apply w-full max-w-sm px-4 py-2 font-light tracking-wide duration-200 border rounded shadow-sm outline-none focus:shadow-sm placeholder:font-thin placeholder:text-orange-900;
 }
 
 header > form > button {
@@ -46,7 +46,7 @@ button.btn {
 }
 
 button.add {
-	@apply text-white drop-shadow bg-gradient-to-tr from-sky-700 to-sky-500 hover:from-sky-500 hover:to-sky-700;
+	@apply text-white drop-shadow bg-gradient-to-tr from-sky-700 to-sky-500;
 }
 
 button.active {
@@ -78,24 +78,28 @@ section > div > button {
 }
 
 section > ul {
-	@apply grid items-center gap-4 sm:grid-cols-3 justify-items-stretch;
+	@apply grid items-center gap-4 sm:grid-cols-3 justify-items-center;
 }
 
 section > ul > li {
-	@apply flex w-full max-w-xs p-1 border rounded-full shadow gap-x-2 focus:shadow-none active:shadow-none;
+	@apply flex w-full max-w-xs px-6 py-1 border rounded-lg shadow-sm gap-x-2 focus:shadow-none active:shadow-none;
 }
 
 section > ul > li > input:first-of-type {
-	@apply;
+	@apply border outline-none border-slate-400;
 }
 
 section > ul > li > input:last-of-type {
-	@apply flex-1 px-4 font-light border rounded-full outline-none focus:border-slate-100 border-slate-50;
+	@apply flex-1 px-2 font-light border rounded-lg shadow-sm outline-none;
 }
 
 section > ul > li > button {
-	@apply w-10 h-10 border rounded-full text-slate-600 hover:animate-spin;
+	@apply flex items-center justify-center w-10 h-10 text-2xl font-light border rounded-full shadow-sm outline-none;
 }
+
+/* section > ul > li > button > i.fa {
+	@apply text-red-500 drop-shadow-md;
+} */
 
 footer {
 	@apply p-6 text-center border shadow rounded-xl;

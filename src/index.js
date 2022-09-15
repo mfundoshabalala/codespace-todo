@@ -32,10 +32,9 @@ function loadTasks () {
 				value="${ task?.task }"
 				class="task ${ task?.completed ? "completed" : ""}"
 			>
-			<button onclick="removeTask(this)">
-				<i class="fa fa-trash" onclick=""></i>
-			</button>
-		`;
+			<button onclick="removeTask(this)">&plus;</button>
+			`;
+			// <i class="fa fa-trash" onclick=""></i>
 		list && list.insertBefore(li, list.children[0]);
 	});
 }
