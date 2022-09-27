@@ -27,4 +27,13 @@ form?.addEventListener("submit", (event) => {
 });
 
 // validate the form fields on submit
-let formValidation = () => {};
+let formValidation = () => {
+	if (input?.value === "") {
+		document.getElementById("msg").innerText = "Task cannot be blank";
+		console.log("failure");
+	} else {
+		document.getElementById("msg").innerText = "";
+		console.log("successs");
+		acceptData();
+	}
+};
