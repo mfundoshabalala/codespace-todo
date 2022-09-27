@@ -31,7 +31,10 @@ let createTask = () => {
 let deleteTask = (e) => { };
 
 // edit todo task
-let editTask = (e) => { };
+let editTask = (e) => {
+	input.value = e.parentElement.previousElementSibling.innerHTML;
+	e.parentElement.parentElement.remove();
+};
 
 // submit event listener for the form
 form?.addEventListener("submit", (event) => {
