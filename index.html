@@ -20,9 +20,28 @@
 		<header>
 			<h1>What is the plan today?</h1>
 			<form id="form">
-				<input id="input" type="text" placeholder="Enter new task" />
+				<div class="form-group">
+					<label for="textInput">Task Title</label>
+					<input id="textInput" type="text"
+						placeholder="Enter new task" />
+				</div>
+				<div class="form-group">
+					<label for="titleInput">Task Title</label>
+					<input id="titleInput" type="text"
+						placeholder="Enter task title" />
+				</div>
+				<div class="form-group">
+					<label for="dateInput">Task Title</label>
+					<input id="dateInput" type="datetime-local"
+						placeholder="Enter new task" />
+				</div>
+				<div class="form-group">
+					<label for="descrInput">Task Title</label>
+					<textarea id="descrInput" cols="30" rows="5"
+						placeholder="Enter task description"></textarea>
+				</div>
 				<button class="btn add" type="submit">New task</button>
-				<p id="msg"></p>
+				<span id="msg"></span>
 			</form>
 		</header>
 		<section>
