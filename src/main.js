@@ -10,7 +10,18 @@ let data = {};
 let acceptData = () => {};
 
 // create a new todo task
-let createTask = () => {};
+let createTask = () => {
+	tasks.innerHTML += `
+		<div>
+			<p>${ data.text }</p>
+			<span class="options">
+			<i onClick="editTask(this)" class="fas fa-edit"></i>
+			<i onClick="deleteTask(this)" class="fas fa-trash-alt"></i>
+			</span>
+		</div>
+	`;
+	input.value = "";
+};
 
 // delete todo task
 let deleteTask = (e) => { };
