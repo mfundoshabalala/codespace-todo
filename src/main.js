@@ -1,6 +1,9 @@
 // @ts-nocheck
 let form = document.getElementById("form");
 let input = document.getElementById("input");
+let titleInput = document.getElementById("titleInput");
+let dateInput = document.getElementById("dateInput");
+let descrInput = document.getElementById("descrInput");
 let msg = document.getElementById("msg");
 let tasks = document.getElementById("todos");
 
