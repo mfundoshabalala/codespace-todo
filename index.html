@@ -19,9 +19,10 @@
 	<body>
 		<header>
 			<h1>What is the plan today?</h1>
-			<form>
-				<input type="text" placeholder="Enter new task" />
+			<form id="form">
+				<input id="input" type="text" placeholder="Enter new task" />
 				<button class="btn add" type="submit">New task</button>
+				<p id="msg"></p>
 			</form>
 		</header>
 		<section>
@@ -30,13 +31,13 @@
 				<button class="btn complete">Completed</button>
 				<button class="btn overdue">Not complete</button>
 			</div>
-			<ul>
+			<ul id="todos">
 
 			</ul>
 		</section>
-		<footer>&copy;</footer>
+		<footer>&copy; Copyright reserved</footer>
 	</body>
 
-	<script src="./src/index.js"></script>
+	<script src="./src/main.js"></script>
 
 </html>
