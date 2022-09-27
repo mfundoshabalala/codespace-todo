@@ -7,7 +7,11 @@ let tasks = document.getElementById("todos");
 let data = {};
 
 // accepts data on submit
-let acceptData = () => {};
+let acceptData = () => {
+	data["text"] = input.value;
+	console.log(data);
+	createTask();
+};
 
 // create a new todo task
 let createTask = () => {
