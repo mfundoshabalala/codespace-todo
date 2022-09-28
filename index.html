@@ -17,8 +17,10 @@
 	</head>
 
 	<body>
+		<div id="snackbar">Some text some message..</div>
 		<header>
-			<h1>What is the plan today?</h1>
+			<h1>What is the plan for today?</h1>
+
 			<form id="form">
 				<div class="form-group">
 					<label for="titleInput">Task Title</label>
@@ -35,16 +37,17 @@
 					<textarea id="descrInput" cols="30" rows="5"
 						placeholder="Enter task description"></textarea>
 				</div>
-				<button class="btn add" type="submit">Add New task</button>
+				<button class="btn-primary" type="submit">Add New task</button>
 				<span id="msg"></span>
 			</form>
 		</header>
 		<section>
 			<div>
-				<button id="allTasks" class="btn active">All</button>
+				<button id="allTasks" class="btn-xs btn-primary">All</button>
 				<button id="completeTasks"
-					class="btn complete">Completed</button>
-				<button id="pendingTasks" class="btn pending">Pending</button>
+					class="btn-xs btn-success">Completed</button>
+				<button id="pendingTasks"
+					class="btn-xs btn-secondary">Pending</button>
 			</div>
 			<ul id="todos">
 
