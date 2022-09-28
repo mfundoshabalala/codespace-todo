@@ -21,6 +21,11 @@ let state = {
 	completed: false,
 	pending: false,
 }
+// error or success status
+let status = {
+	isSuccess: null,
+	message: "",
+};
 
 // accepts data on submit
 const acceptData = () => {
@@ -38,38 +43,37 @@ const acceptData = () => {
 // reset form fields on submit
 const resetForm = () => {
 	titleInput.value = "";
-	dateInput.value = "";
+	dateInput.value = null;
 	descrInput.value = "";
 }
 
 // create a new todo task
 const createTasks = () => {
 	tasks.innerHTML = "";
-	renderedTasks.map((x, y) => {
-		return (tasks.innerHTML += `
-			<div id=${ y }>
-				<span class="fw-bold">${ x.text }</span>
-				<span class="small text-secondary">${ x.date }</span>
-				<p>${ x.description }</p>
+	renderedTasks.map((task, index) => {
+		tasks.innerHTML += (`
+			<div id=${ index }>
+				<span class="fw-bold">${ task.text }</span>
+				<span class="small text-secondary">${ task.date }</span>
+				<p>${ task.description }</p>
 
 				<span class="options">
 					<i onClick= "editTask(this)" class="fas fa-edit"></i>
 					<i onClick ="deleteTask(this);createTasks()" class="fas fa-trash-alt"></i>
-					<input id="completeInput" type="checkbox" onClick ="completeTask(this)" />
+					<input type="checkbox" onClick ="completeTask(this)" ${ task.complete ? "checked" : ""} />
 				</span>
 			</div>
     	`);
 	});
 
 	console.log(data);
-
 	resetForm();
 };
 
 // load tasks from local storage on reload
 (() => {
 	data = JSON.parse(localStorage.getItem("data")) || [];
-	state = JSON.parse(localStorage.getItem("data")) || {};
+	state = JSON.parse(localStorage.getItem("state")) || {};
 
 	// render all tasks
 	if (!state.completed && !state.pending) {
@@ -111,7 +115,16 @@ const editTask = (e) => {
 };
 
 // complete todo task
-const completeTask = (e) => {}
+const completeTask = (e) => {
+	let tasks = Array.from(JSON.parse(localStorage.getItem("data") || "[]"));
+	tasks.forEach((task) => {
+		if (task.text === e.parentElement.parentElement.children[0].innerHTML) {
+			task.complete = !task.complete;
+		}
+	});
+	localStorage.setItem("data", JSON.stringify(tasks));
+	e.nextElementSibling.classList.toggle("completed");
+}
 
 // submit event listener for the form
 form?.addEventListener("submit", (event) => {
@@ -122,13 +135,23 @@ form?.addEventListener("submit", (event) => {
 
 // validate the form fields on submit
 const formValidation = () => {
+	// Get the snackbar DIV
+	var x = document.getElementById("snackbar");
 	// every task should have a title at the very least
 	if (titleInput?.value === "") {
-		document.getElementById("msg").innerText = "Task cannot be blank";
+		status.isSuccess = false;
+		document.getElementById("snackbar").innerHTML = "An error has occured!";
 	} else {
-		document.getElementById("msg").innerText = "";
+		status.isSuccess = true;
+		document.getElementById("snackbar").innerHTML = "Task successfully added";
 		acceptData();
 	}
+
+	// Add the "show" class to DIV
+	x.className = `show ${ status.isSuccess ? "success" : "error" }`;
+
+	// After 3 seconds, remove the snackbar show class from DIV
+	setTimeout(() => x.className = x.className.replace("show", "hide"), 3000);
 };
 
 // render completed tasks
@@ -142,7 +165,7 @@ const renderCompletedTasks = () => {
 btnCompleteTasks?.addEventListener("click", (event) => {
 	event.preventDefault();
 	renderCompletedTasks();
-	// location.reload();
+	location.reload();
 });
 
 // render pending tasks
@@ -156,7 +179,7 @@ const renderPendingTasks = () => {
 btnPendingTasks?.addEventListener("click", (event) => {
 	event.preventDefault();
 	renderPendingTasks();
-	// location.reload();
+	location.reload();
 });
 
 // render all tasks
@@ -170,5 +193,6 @@ const renderAllTasks = () => {
 btnAllTasks?.addEventListener("click", (event) => {
 	event.preventDefault();
 	renderAllTasks();
-	// location.reload();
+	location.reload();
 });
+
