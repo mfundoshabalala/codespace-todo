@@ -18,6 +18,51 @@ body {
 	-ms-overflow-style: none;
 	scrollbar-width: none;
 
-	@apply flex flex-col min-h-screen px-4 py-8 text-slate-900 gap-y-4 md:gap-y-8;
+	@apply flex flex-col min-h-screen px-1 sm:px-4 py-4 sm:py-8 text-slate-900 gap-y-4 md:gap-y-8;
 }
 
+/*  */
+header {
+	@apply border rounded-md flex justify-center flex-col py-8 px-4 gap-8 shadow-sm;
+}
+
+h1 {
+	@apply text-center text-3xl font-black uppercase drop-shadow-md;
+}
+
+form {
+	@apply flex flex-col items-center gap-4;
+}
+
+form .form-group {
+	@apply w-96 sm:w-[260px] flex items-baseline;
+}
+
+form .form-group label {
+	@apply w-28;
+}
+
+form .form-group input, form .form-group textarea {
+	@apply flex-1;
+}
+
+form button {
+	@apply min-w-[250px] w-full;
+}
+
+input, textarea {
+	@apply border active:border-none active:shadow-none outline-sky-600 rounded px-4 py-2 shadow-sm flex-1 ;
+}
+
+label {
+	@apply font-light;
+}
+
+/*  */
+section > div {
+	@apply flex gap-2 md:gap-4 justify-center;
+}
+
+button {
+	@apply active:shadow-none shadow px-3 py-1 border-none focus:outline-1 outline-blue-500 rounded flex-1 max-w-xs font-light;
+}
