@@ -18,40 +18,48 @@ body {
 	-ms-overflow-style: none;
 	scrollbar-width: none;
 
-	@apply flex flex-col min-h-screen px-1 sm:px-4 py-4 sm:py-8 text-slate-900 gap-y-4 md:gap-y-8;
+	@apply flex flex-col min-h-screen px-1 sm:px-4 py-3 sm:py-8 text-slate-900 gap-y-4 md:gap-y-8 bg-slate-100;
 }
 
-/*  */
-header {
-	@apply border rounded-md flex justify-center flex-col py-8 px-4 gap-8 shadow-sm;
+header, footer {
+	@apply bg-white border rounded-md shadow-sm;
 }
 
-h1 {
-	@apply text-center text-3xl font-black uppercase drop-shadow-md;
+footer {
+	@apply p-4 rounded-md;
 }
 
-form {
-	@apply flex flex-col items-center gap-4;
+button {
+	@apply border active:bg-gradient-to-tr duration-300 shadow px-3 py-1 rounded flex-1 font-semibold;
+	@apply outline-1 outline-transparent active:border-transparent focus:border-transparent active:shadow-none active:text-white;
 }
 
-form .form-group {
-	@apply w-96 sm:w-[260px] flex items-baseline;
+button.btn-xs {
+	@apply max-w-[200px];
 }
 
-form .form-group label {
-	@apply w-28;
+button.btn-fluid {
+	@apply w-full;
 }
 
-form .form-group input, form .form-group textarea {
-	@apply flex-1;
+button.btn-primary {
+	@apply from-sky-600 via-sky-700 to-sky-600 hover:border-blue-600 border-blue-300 focus:outline-blue-500;
 }
 
-form button {
-	@apply min-w-[250px] w-full;
+button.btn-success {
+	@apply from-green-600 via-green-700 to-green-600 hover:border-green-600 border-green-300 focus:outline-green-500;
+}
+
+button.btn-secondary {
+	@apply from-orange-600 via-orange-700 to-orange-600 hover:border-orange-600 border-orange-300 focus:outline-orange-500;
+}
+
+button.btn-danger {
+	@apply from-red-600 via-red-700 to-red-600 hover:border-red-600 border-red-300 focus:outline-red-500;
 }
 
 input, textarea {
-	@apply border active:border-none active:shadow-none outline-sky-600 rounded px-4 py-2 shadow-sm flex-1 ;
+	@apply border active:border-transparent active:shadow-none outline-1 outline-transparent focus:outline-blue-600 rounded px-4 py-2 shadow-sm flex-1 ;
 }
 
 label {
@@ -59,10 +67,49 @@ label {
 }
 
 /*  */
+header {
+	@apply flex items-center flex-col py-8 px-4 gap-8;
+}
+
+h1 {
+	@apply text-center text-3xl font-black uppercase drop-shadow-md;
+}
+
+form {
+	@apply flex flex-col gap-4 w-[380px] sm:w-[448px];
+}
+
+form .form-group {
+	@apply flex flex-col;
+}
+
+form .form-group input, form .form-group textarea {
+	@apply w-full font-light;
+}
+
+
+/*  */
 section > div {
 	@apply flex gap-2 md:gap-4 justify-center;
 }
 
-button {
-	@apply active:shadow-none shadow px-3 py-1 border-none focus:outline-1 outline-blue-500 rounded flex-1 max-w-xs font-light;
+/*  */
+#snackbar {
+	@apply invisible min-w-[256px] -ml-32 bg-green-600 text-white text-center rounded p-4 fixed z-10 left-1/2 bottom-8 drop-shadow font-semibold;
+}
+
+#snackbar.success {
+	@apply bg-green-600;
+}
+
+#snackbar.error {
+	@apply bg-red-600;
+}
+
+#snackbar.show {
+	@apply visible animate-fadein;
+}
+
+#snackbar.hide {
+	@apply invisible delay-300 animate-fadeout;
 }
