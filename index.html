@@ -17,9 +17,10 @@
 	</head>
 
 	<body>
-		<div id="snackbar">Some text some message..</div>
-		<header>
-			<h1>What is the plan for today?</h1>
+		<div id="snackbar"></div>
+		<div id="backdrop" class="hide"></div>
+		<dialog id="modal">
+			<h2>Add your task</h2>
 
 			<form id="form">
 				<div class="form-group">
@@ -37,12 +38,26 @@
 					<textarea id="descrInput" cols="30" rows="5"
 						placeholder="Enter task description"></textarea>
 				</div>
-				<button class="btn-primary" type="submit">Add New task</button>
-				<span id="msg"></span>
+				<div class="flex gap-4 flex-wrap mt-6">
+					<button id="closeModal" class="btn-danger"
+						type="button">Close</button>
+					<button class="btn-primary" type="submit">Save</button>
+				</div>
+			</form>
+		</dialog>
+		<header>
+			<h1>What's on your mind?</h1>
+			<div class="flex justify-center gap-2 min-w-[400px]">
+				<button id="reset"
+					class="btn-md bg-red-700 text-white">Reset</button>
+				<button id="openModal"
+					class="btn-md bg-slate-700 text-white">Add New
+					task</button>
+			</div>
 			</form>
 		</header>
 		<section>
-			<div>
+			<div class="mb-4 sm:mb-8">
 				<button id="allTasks" class="btn-xs btn-primary">All</button>
 				<button id="completeTasks"
 					class="btn-xs btn-success">Completed</button>
