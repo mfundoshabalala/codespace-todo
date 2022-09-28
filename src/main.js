@@ -3,7 +3,6 @@ let form = document.getElementById("form");
 let tasks = document.getElementById("todos");
 //
 let titleInput = document.getElementById("titleInput");
-let dateInput = document.getElementById("dateInput");
 let descrInput = document.getElementById("descrInput");
 let statusInput = document.getElementById("statusInput");
 let msg = document.getElementById("msg");
@@ -26,6 +25,24 @@ let status = {
 	isSuccess: null,
 	message: "",
 };
+
+//
+document.getElementById("reset").addEventListener("click", () => {
+	localStorage.removeItem("data");
+	location.reload();
+});
+
+//
+document.getElementById("openModal").addEventListener("click", () => {
+	document.getElementById("backdrop").className = "show";
+	document.getElementById("modal").setAttribute("open", true);
+});
+
+//
+document.getElementById("closeModal").addEventListener("click", () => {
+	document.getElementById("backdrop").className = "hide";
+	document.getElementById("modal").removeAttribute("open");
+});
 
 // accepts data on submit
 const acceptData = () => {
@@ -52,9 +69,11 @@ const createTasks = () => {
 	tasks.innerHTML = "";
 	renderedTasks.map((task, index) => {
 		tasks.innerHTML += (`
-			<div id=${ index }>
-				<span class="fw-bold">${ task.text }</span>
-				<span class="small text-secondary">${ task.date }</span>
+			<li key=${ index+1 }>
+				<div>
+					<span class="font-bold">${ task.text }</span>
+				 	<span class="small">${ task.date }</span>
+				</div>
 				<p>${ task.description }</p>
 
 				<span class="options">
@@ -62,7 +81,7 @@ const createTasks = () => {
 					<i onClick ="deleteTask(this);createTasks()" class="fas fa-trash-alt"></i>
 					<input type="checkbox" onClick ="completeTask(this)" ${ task.complete ? "checked" : ""} />
 				</span>
-			</div>
+			</li>
     	`);
 	});
 
@@ -143,6 +162,8 @@ const formValidation = () => {
 		document.getElementById("snackbar").innerHTML = "An error has occured!";
 	} else {
 		status.isSuccess = true;
+		document.getElementById("modal").removeAttribute("open");
+		document.getElementById("backdrop").className = "hide";
 		document.getElementById("snackbar").innerHTML = "Task successfully added";
 		acceptData();
 	}
