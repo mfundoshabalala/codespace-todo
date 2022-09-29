@@ -1,4 +1,5 @@
 // @ts-nocheck
+
 let form = document.getElementById("form");
 let tasks = document.getElementById("todos");
 //
@@ -71,14 +72,19 @@ const createTasks = () => {
 		tasks.innerHTML += (`
 			<li key=${ index+1 }>
 				<div>
-					<span class="font-bold">${ task.text }</span>
-				 	<span class="small">${ task.date }</span>
+					<span>${ task.text }</span>
+				 	<span>${ task.date }</span>
 				</div>
 				<p>${ task.description }</p>
 
 				<span class="options">
-					<i onClick= "editTask(this)" class="fas fa-edit"></i>
-					<i onClick ="deleteTask(this);createTasks()" class="fas fa-trash-alt"></i>
+					<button onClick= "editTask(this)">Edit
+						<i class="fas fa-edit"></i>
+					</button>
+					<button onClick ="deleteTask(this);createTasks()">
+						Delete
+						<i  class="fas fa-trash-alt"></i>
+					</button>
 					<input type="checkbox" onClick ="completeTask(this)" ${ task.complete ? "checked" : ""} />
 				</span>
 			</li>
@@ -125,10 +131,12 @@ const deleteTask = (e) => {
 const editTask = (e) => {
 	let selectedTask = e.parentElement.parentElement;
 	//TODO: select a guard clause for completed tasks
+	document.getElementById("backdrop").className = "show";
+	document.getElementById("modal").setAttribute("open", true);
 	// pre-populate the input(s) with previous values
-	titleInput.value = selectedTask.children[0].innerHTML;
-	dateInput.value = selectedTask.children[1].innerHTML;
-	descrInput.value = selectedTask.children[2].innerHTML;
+	titleInput.value = selectedTask.children[0].children[0].innerHTML;
+	dateInput.value = selectedTask.children[0].children[1].innerHTML;
+	descrInput.value = selectedTask.children[1].innerHTML;
 	// remove the task from local storage
 	deleteTask(e);
 };
@@ -137,12 +145,11 @@ const editTask = (e) => {
 const completeTask = (e) => {
 	let tasks = Array.from(JSON.parse(localStorage.getItem("data") || "[]"));
 	tasks.forEach((task) => {
-		if (task.text === e.parentElement.parentElement.children[0].innerHTML) {
+		if (task.text === e.parentElement.parentElement.children[0].children[0].innerHTML) {
 			task.complete = !task.complete;
 		}
 	});
 	localStorage.setItem("data", JSON.stringify(tasks));
-	e.nextElementSibling.classList.toggle("completed");
 }
 
 // submit event listener for the form
@@ -164,7 +171,7 @@ const formValidation = () => {
 		status.isSuccess = true;
 		document.getElementById("modal").removeAttribute("open");
 		document.getElementById("backdrop").className = "hide";
-		document.getElementById("snackbar").innerHTML = "Task successfully added";
+		document.getElementById("snackbar").innerHTML = "Task successfully saved";
 		acceptData();
 	}
 

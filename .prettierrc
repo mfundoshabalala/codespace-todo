@@ -2,6 +2,6 @@
 	"tabWidth": 2,
 	"useTabs": true,
 	"endOfLine": "crlf",
-	"printWidth": 100,
+	"printWidth": 120,
 	"trailingComma": "es5"
 }

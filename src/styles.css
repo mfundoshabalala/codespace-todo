@@ -34,7 +34,7 @@ body > section {
 }
 
 button {
-	@apply border active:bg-gradient-to-tr duration-300 shadow px-3 py-1 rounded-full flex-1 font-semibold whitespace-nowrap bg-slate-100;
+	@apply border active:bg-gradient-to-tr duration-300 shadow px-3 py-1 rounded flex-1 font-light whitespace-nowrap bg-slate-100;
 	@apply outline-1 outline-transparent active:border-transparent focus:border-transparent active:shadow-none active:text-white;
 }
 
@@ -147,7 +147,7 @@ ul {
 }
 
 li {
-	@apply border rounded-md flex flex-col w-[384px] p-2;
+	@apply border border-transparent active:border-slate-200 rounded-md flex flex-col w-[384px] p-2 shadow active:shadow-none;
 }
 
 li > div {
@@ -155,7 +155,7 @@ li > div {
 }
 
 li > div > span:first-child {
-	@apply font-semibold text-lg first-letter:capitalize;
+	@apply font-light text-base first-letter:capitalize;
 }
 
 li > div > span:nth-child(2) {
