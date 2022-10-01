@@ -73,22 +73,22 @@ const createTasks = () => {
 			<li key=${ index+1 }>
 				<div>
 					<span>${ task.text }</span>
-				 	<span>${ task.date }</span>
+					<span>${ task.date }</span>
 				</div>
 				<p>${ task.description }</p>
 
 				<span class="options">
-					<button onClick= "editTask(this)">Edit
+					<button onClick= "editTask(this)" class="btn-xs">Edit
 						<i class="fas fa-edit"></i>
 					</button>
-					<button onClick ="deleteTask(this);createTasks()">
+					<button onClick ="deleteTask(this);createTasks()" class="btn-xs">
 						Delete
 						<i  class="fas fa-trash-alt"></i>
 					</button>
 					<input type="checkbox" onClick ="completeTask(this)" ${ task.complete ? "checked" : ""} />
 				</span>
 			</li>
-    	`);
+		`);
 	});
 
 	console.log(data);
@@ -157,12 +157,13 @@ form?.addEventListener("submit", (event) => {
 	event.preventDefault();
 
 	formValidation();
+
 });
 
 // validate the form fields on submit
 const formValidation = () => {
 	// Get the snackbar DIV
-	var x = document.getElementById("snackbar");
+	var snackbar = document.getElementById("snackbar");
 	// every task should have a title at the very least
 	if (titleInput?.value === "") {
 		status.isSuccess = false;
@@ -173,13 +174,14 @@ const formValidation = () => {
 		document.getElementById("backdrop").className = "hide";
 		document.getElementById("snackbar").innerHTML = "Task successfully saved";
 		acceptData();
+		location.reload();
 	}
 
 	// Add the "show" class to DIV
-	x.className = `show ${ status.isSuccess ? "success" : "error" }`;
+	snackbar.className = `show ${ status.isSuccess ? "success" : "error" }`;
 
 	// After 3 seconds, remove the snackbar show class from DIV
-	setTimeout(() => x.className = x.className.replace("show", "hide"), 3000);
+	setTimeout(() => snackbar.className = snackbar.className.replace("show", "hide"), 3000);
 };
 
 // render completed tasks

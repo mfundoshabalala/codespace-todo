@@ -25,6 +25,10 @@ header, footer, body > section {
 	@apply bg-white border rounded-md shadow-sm p-4;
 }
 
+footer {
+	@apply text-center;
+}
+
 h2 {
 	@apply text-center text-2xl font-black uppercase drop-shadow-xl mb-4;
 }
@@ -34,16 +38,16 @@ body > section {
 }
 
 button {
-	@apply border active:bg-gradient-to-tr duration-300 shadow px-3 py-1 rounded flex-1 font-light whitespace-nowrap bg-slate-100;
+	@apply border active:bg-gradient-to-tr duration-300 shadow-sm rounded flex-1 font-light whitespace-nowrap bg-slate-100;
 	@apply outline-1 outline-transparent active:border-transparent focus:border-transparent active:shadow-none active:text-white;
 }
 
 button.btn-xs {
-	@apply max-w-[200px];
+	@apply max-w-[200px] px-1 py-0.5;
 }
 
 button.btn-md {
-	@apply px-4 py-2;
+	@apply px-3 py-1;
 }
 
 button.btn-fluid {
@@ -51,19 +55,23 @@ button.btn-fluid {
 }
 
 button.btn-primary {
-	@apply from-sky-600 via-sky-700 to-sky-600 hover:border-blue-600 border-blue-300 focus:outline-blue-500;
+	@apply from-sky-600 via-sky-700 to-sky-600 hover:border-blue-600  focus:outline-blue-500;
 }
 
 button.btn-success {
-	@apply from-green-600 via-green-700 to-green-600 hover:border-green-600 border-green-300 focus:outline-green-500;
+	@apply from-green-600 via-green-700 to-green-600 hover:border-green-600 focus:outline-green-500;
 }
 
 button.btn-secondary {
-	@apply from-orange-600 via-orange-700 to-orange-600 hover:border-orange-600 border-orange-300 focus:outline-orange-500;
+	@apply from-orange-600 via-orange-700 to-orange-600 hover:border-orange-600 focus:outline-orange-500;
 }
 
 button.btn-danger {
-	@apply from-red-600 via-red-700 to-red-600 hover:border-red-600 border-red-300 focus:outline-red-500;
+	@apply from-red-600 via-red-700 to-red-600 hover:border-red-600 focus:outline-red-500;
+}
+
+i.fas {
+	@apply font-normal;
 }
 
 input, textarea {
@@ -94,7 +102,6 @@ form .form-group {
 form .form-group input, form .form-group textarea {
 	@apply w-full font-light;
 }
-
 
 /*  */
 section > div {
@@ -164,4 +171,12 @@ li > div > span:nth-child(2) {
 
 li > p {
 	@apply font-light;
+}
+
+li > span {
+	@apply flex justify-end items-center gap-2;
+}
+
+li > span > button {
+	@apply text-sm;
 }
